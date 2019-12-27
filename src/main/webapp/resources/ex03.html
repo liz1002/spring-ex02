@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.min.js"></script>
+</head>
+<body>
+	<div id="wrap"></div>
+	
+	<!-- key가 배열일 때는 반복 구간에 "#each." 대신 "#key"이름 사용 -->
+	<script id="template" type="text/t-handlebars-template">
+		<h1 id="title">{{title}}</h1>
+		<h3 id="subtitle">{{subtitle}}</h3>
+		<ul id="list">
+			{{#replies}} 
+				<li>
+				<div class="item">
+					<span>{{rno}}</span>
+					<p>
+						<span>{{replytext}}</span>
+						<br>
+						<span>{{tempdate replydate}}</span>
+					</p>
+				</div>
+				</li>
+			{{/replies}}
+		</ul>
+	</script>
+	
+	<script>
+		Handlebars.registerHelper("tempdate", function(replydate) {
+			var date = new Date(replydate);
+			var year = date.getFullYear();
+			var month = date.getMonth()+1;
+			var day = date.getDate();
+			var week = date.getDay();
+			var weekArr = ["일", "월", "화", "수", "목", "금", "토"];
+			
+			return year + ". " + month + ". " + day + " " + weekArr[week] + "요일";
+		});
+	
+		var data = {
+				title: "제목입니다.",
+				subtitle: "부제목입니다.",
+				replies: [
+					{rno:1, replytext: "댓글 작성..1", replydate: new Date()},
+					{rno:2, replytext: "댓글 작성..2", replydate: new Date()},
+					{rno:3, replytext: "댓글 작성..3", replydate: new Date()},
+					{rno:4, replytext: "댓글 작성..4", replydate: new Date()},
+					{rno:5, replytext: "댓글 작성..5", replydate: new Date()}			
+				]
+		}
+	
+		var source = $("#template").html();
+		var func = Handlebars.compile(source);
+		var str = func(data);
+		$("#wrap").html(str);
+	</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.red{
+		color: Goldenrod;
+	}
+	.blue{
+		color: PaleVioletRed;
+	}
+	.yellow{
+		color: Plum;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.min.js"></script>
+</head>
+<body>
+	<div id="t1"></div>
+	<script id="template" type="text/x-handlebars-template">
+		<span class="red">{{name}}</span>
+		<div>
+			<span class="blue">{{userid}}</span>
+			<span class="yellow">{{address}}</span>		
+		</div>
+	</script>
+	<script>
+		var source = $("#template").html();
+		var func = Handlebars.compile(source);
+		var data = {
+				name: "백경",
+				userid: "white",
+				address: "서울 재벌구 부자동"
+		}
+		var str = func(data);
+		$("#t1").html(str);
+	</script>
+</body>
+</html>

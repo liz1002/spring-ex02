@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.MemberMapper">
+
+	<insert id="insert" parameterType="MemberVO">
+		insert into tbl_member(userid, userpw, username, email)  
+			values(#{userid}, #{userpw}, #{username}, #{email});
+	</insert>
+	
+	<select id="selectList" resultType="MemberVO">
+		select * from tbl_member
+	</select>
+	
+	<delete id="delete" parameterType="String">
+		delete from tbl_member where userid=#{userid}
+	</delete>
+	
+	<update id="update" parameterType="MemberVO">
+		update tbl_member set userpw=#{userpw}, username=#{username}, email=#{email}, updatedate=now()
+			where userid=#{userid}
+	</update>
+	
+	<select id="selectById" resultType="MemberVO">
+		select * from tbl_member where userid=#{userid}
+	</select>
+</mapper>

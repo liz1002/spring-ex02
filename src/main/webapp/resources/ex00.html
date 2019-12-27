@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.min.js"></script>
+</head>
+<body>
+	<div id="t1">
+		<script>
+			var source = "<h1>{{title}}</h1><p>{{name}}</p>"; //형태
+			var func = Handlebars.compile(source); //function함수
+			var date = {title : "타이틀", name:"쀽빵빵"};
+			var str = func(date); //String으로 넘어옴
+			$("#t1").html(str);
+		</script>
+	</div>
+	<hr>
+	<div id="t2">
+		<script>
+			var source2 = "<h1>{{username}}</h1><h2>{{userid}}</h2><h3>{{password}}</h3>";
+			var func2 = Handlebars.compile(source2); //함수로 만듦
+			var data = {username : "백경",
+						userid : "white",
+						password : "100"};
+			var str = func2(data);
+			$("#t2").append(str);
+		</script>
+	</div>
+</body>
+</html>
