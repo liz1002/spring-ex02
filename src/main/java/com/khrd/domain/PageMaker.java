@@ -39,7 +39,7 @@ public class PageMaker {
 		}
 		
 		//마지막 페이지 번호
-		lastPage = (int) Math.ceil((double)totalCount/(double)displayPageNum);
+		lastPage = (int) Math.ceil((double)totalCount/(double)cri.getPerPageNum());
 	}
 	
 	public int getTotalCount() {
